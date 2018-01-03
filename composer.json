@@ -1,0 +1,12 @@
+{
+    "name": "markokeeffe/coinmonitor",
+    "require": {
+        "vlucas/phpdotenv": "^2.4",
+        "google/apiclient": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoinMonitor\\": "src/"
+        }
+    }
+}
