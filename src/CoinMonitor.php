@@ -6,37 +6,27 @@ namespace CoinMonitor;
 
 class CoinMonitor
 {
-    protected $coin;
-    protected $exchange;
-    protected $buyPrice;
-    protected $sellTargets;
-    protected $stopLoss;
     protected $targetsMet = false;
     protected $hitStopLoss = false;
 
-    public function __construct($coin, $exchange, $buyPrice, array $sellTargets, $stopLoss = null)
+    public function monitorCoinMovement($coin, $exchange, $buyPrice, array $sellTargets, $stopLoss = null)
     {
-        $this->coin = $coin;
-        $this->exchange = $exchange;
-        $this->buyPrice = $buyPrice;
-        $this->sellTargets = $sellTargets;
-        $this->stopLoss = $stopLoss;
 
         $time = date('Y-m-d H:i:s');
 
-        $coinLog = dirname(__FILE__) . '/../logs/' . strtolower($this->coin) . '-' . $time . '.csv';
+        $coinLog = dirname(__FILE__) . '/../logs/' . strtolower($coin) . '-' . $time . '.csv';
 
         $fh = fopen($coinLog, "a");
 
         $headers = [
             [
                 'Time: ' . $time,
-                'Coin: ' . $this->coin,
-                'Exchange: ' . $this->exchange,
-                'Buy Price: ' . $this->buyPrice,
-                'Target 1: ' . $this->sellTargets[0],
-                'Target 2: ' . $this->sellTargets[1],
-                'Stop Loss: ' . $this->stopLoss,
+                'Coin: ' . $coin,
+                'Exchange: ' . $exchange,
+                'Buy Price: ' . $buyPrice,
+                'Target 1: ' . $sellTargets[0],
+                'Target 2: ' . $sellTargets[1],
+                'Stop Loss: ' . $stopLoss,
             ],
             [
                 'Time',
@@ -68,14 +58,14 @@ class CoinMonitor
             }
 
             $status = 'Holding';
-            if ($this->sellTargets[0] <= $exchangePrice) {
+            if ($sellTargets[0] <= $exchangePrice) {
                 $status = 'Target 1 Hit';
             }
-            if ($this->sellTargets[1] <= $exchangePrice) {
+            if ($sellTargets[1] <= $exchangePrice) {
                 $status = 'Target 2 Hit';
                 $this->targetsMet = true;
             }
-            if ($this->stopLoss >= $exchangePrice) {
+            if ($stopLoss >= $exchangePrice) {
                 $status = 'Stop Loss Hit';
                 $this->hitStopLoss = true;
             }
@@ -92,5 +82,21 @@ class CoinMonitor
         }
 
         fclose($fh);
+    }
+
+    public function checkHitBtcForC20()
+    {
+        $c20Exists = false;
+        $symbols = json_decode(file_get_contents('https://api.hitbtc.com/api/2/public/symbol'));
+        foreach ($symbols as $symbol) {
+            if ($symbol->baseCurrency != 'BTC') {
+                continue;
+            }
+            if ($symbol->quoteCurrency === 'C20') {
+                $c20Exists = true;
+            }
+        }
+
+        echo $c20Exists ? 'C20!' : 'no';
     }
 }

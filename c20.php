@@ -7,10 +7,6 @@ date_default_timezone_set('Australia/Brisbane');
 $dotenv = new Dotenv\Dotenv(getcwd());
 $dotenv->load();
 
-list($script, $coin, $exchange, $buyPrice, $sellTargets, $stopLoss) = $argv;
-
-$sellTargets = explode(',', $sellTargets);
-
 $monitor = new \CoinMonitor\CoinMonitor();
 
-$monitor->monitorCoinMovement($coin, $exchange, $buyPrice, $sellTargets, $stopLoss);
+$monitor->checkHitBtcForC20();
