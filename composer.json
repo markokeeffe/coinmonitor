@@ -2,7 +2,8 @@
     "name": "markokeeffe/coinmonitor",
     "require": {
         "vlucas/phpdotenv": "^2.4",
-        "google/apiclient": "^2.2"
+        "google/apiclient": "^2.2",
+        "hitbtc-com/hitbtc-php-sdk": "^1.1"
     },
     "autoload": {
         "psr-4": {

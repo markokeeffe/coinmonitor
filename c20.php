@@ -7,6 +7,17 @@ date_default_timezone_set('Australia/Brisbane');
 $dotenv = new Dotenv\Dotenv(getcwd());
 $dotenv->load();
 
-$monitor = new \CoinMonitor\CoinMonitor();
+$hitBtc = new \CoinMonitor\HitBtc();
 
-$monitor->checkHitBtcForC20();
+if (!$hitBtc->checkForC20()) {
+    die('C20 Not Available.');
+}
+
+$btcBalance = $hitBtc->getBalance('BTC');
+
+if ($btcBalance->getAvailable() <= 0) {
+    die('NO BTC Available.');
+}
+
+
+$hitBtc->buyC20($btcBalance->getAvailable());

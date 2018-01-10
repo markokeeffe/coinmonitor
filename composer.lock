@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6f04bec8c40c35d3c9ab173eddb20b9d",
-    "content-hash": "45b07160d5ff31e9fe44855c88094d5d",
+    "hash": "a812ebdcb3827d4cab5f86cf7a1175e1",
+    "content-hash": "1462e6fd193973dd9f151e69af99c3d0",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -376,6 +376,41 @@
                 "url"
             ],
             "time": "2017-03-20 17:10:46"
+        },
+        {
+            "name": "hitbtc-com/hitbtc-php-sdk",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hitbtc-com/hitbtc-php-sdk.git",
+                "reference": "18ef23c3b478f5351debff66bc88f76e1d137fe8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hitbtc-com/hitbtc-php-sdk/zipball/18ef23c3b478f5351debff66bc88f76e1d137fe8",
+                "reference": "18ef23c3b478f5351debff66bc88f76e1d137fe8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "6.x"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Hitbtc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "HitBTC"
+                }
+            ],
+            "description": "HitBTC SDK for PHP",
+            "time": "2017-09-04 10:26:20"
         },
         {
             "name": "monolog/monolog",

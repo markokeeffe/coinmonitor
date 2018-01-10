@@ -84,19 +84,4 @@ class CoinMonitor
         fclose($fh);
     }
 
-    public function checkHitBtcForC20()
-    {
-        $c20Exists = false;
-        $symbols = json_decode(file_get_contents('https://api.hitbtc.com/api/2/public/symbol'));
-        foreach ($symbols as $symbol) {
-            if ($symbol->baseCurrency != 'BTC') {
-                continue;
-            }
-            if ($symbol->quoteCurrency === 'C20') {
-                $c20Exists = true;
-            }
-        }
-
-        echo $c20Exists ? 'C20!' : 'no';
-    }
 }
