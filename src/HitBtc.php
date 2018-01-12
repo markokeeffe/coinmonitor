@@ -33,8 +33,8 @@ class HitBtc
     {
         $newOrder = new \Hitbtc\Model\NewOrder();
         $newOrder->setSide($newOrder::SIDE_SELL);
-        $newOrder->setSymbol('BTCC20');
-        $newOrder->setTimeInForce($newOrder::TIME_IN_FORCE_FOK);
+        $newOrder->setSymbol('C20BTC');
+        $newOrder->setTimeInForce($newOrder::TIME_IN_FORCE_GTC);
         $newOrder->setType($newOrder::TYPE_MARKET);
         $newOrder->setQuantity($btcAmount);
 
